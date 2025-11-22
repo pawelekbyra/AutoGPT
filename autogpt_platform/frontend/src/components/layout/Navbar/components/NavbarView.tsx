@@ -8,6 +8,8 @@ import { NavbarLink } from "./NavbarLink";
 import { accountMenuItems, loggedInLinks, loggedOutLinks } from "../helpers";
 import { useGetV2GetUserProfile } from "@/app/api/__generated__/endpoints/store/store";
 import { AgentActivityDropdown } from "./AgentActivityDropdown/AgentActivityDropdown";
+import { Bell } from "lucide-react";
+import { useStore } from "@/store/useStore";
 
 interface NavbarViewProps {
   isLoggedIn: boolean;
@@ -47,6 +49,12 @@ export const NavbarView = ({ isLoggedIn }: NavbarViewProps) => {
           {isLoggedIn ? (
             <div className="flex items-center gap-4">
               <AgentActivityDropdown />
+              <button
+                onClick={() => useStore.getState().toggleNotificationPopup()}
+                className="p-2 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-full transition-colors"
+              >
+                 <Bell className="h-5 w-5" />
+              </button>
               {profile && <Wallet />}
               <AccountMenu
                 userName={profile?.username}
