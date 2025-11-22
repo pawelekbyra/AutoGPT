@@ -6,6 +6,7 @@ import "./globals.css";
 
 import { Providers } from "@/app/providers";
 import TallyPopupSimple from "@/components/TallyPopup";
+import { GlobalModalWrapper } from "@/components/GlobalModalWrapper";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { Toaster } from "@/components/molecules/Toast/toaster";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -42,6 +43,7 @@ export default async function RootLayout({
           <div className="flex min-h-screen flex-col items-stretch justify-items-stretch">
             {children}
             <TallyPopupSimple />
+            <GlobalModalWrapper />
 
             {/* React Query DevTools is only available in development */}
             {process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOL && (
