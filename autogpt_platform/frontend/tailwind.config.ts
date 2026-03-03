@@ -1,3 +1,4 @@
+import tailwindTypography from "@tailwindcss/typography";
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 import { colors } from "./src/components/styles/colors";
@@ -19,11 +20,35 @@ const config = {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
         poppins: ["var(--font-poppins)"],
+        display: ["var(--font-poppins)"],
+        body: ["var(--font-geist-sans)"],
       },
       colors: {
         // *** APPROVED DESIGN SYSTEM COLORS ***
         // These are the ONLY colors that should be used in our app
         ...colors,
+
+        ink: {
+          DEFAULT: "#1a1a1a",
+          light: "#4a4a4a",
+          medium: "#333333",
+        },
+        wine: {
+          DEFAULT: "#800020",
+          light: "#a52a2a",
+        },
+        parchment: {
+          DEFAULT: "#fcf5e5",
+          light: "#fffdf5",
+          warm: "#f5e6d3",
+        },
+        sepia: {
+          DEFAULT: "#704214",
+          light: "#9c7c56",
+        },
+        amber: {
+          DEFAULT: "#ffbf00",
+        },
 
         // Legacy colors - DO NOT USE THESE IN NEW CODE
         // These are kept only to prevent breaking existing styles
@@ -157,7 +182,7 @@ const config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [tailwindcssAnimate, tailwindTypography],
 } satisfies Config;
 
 export default config;
