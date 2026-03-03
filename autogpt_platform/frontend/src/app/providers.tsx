@@ -4,6 +4,7 @@ import { LaunchDarklyProvider } from "@/services/feature-flags/feature-flag-prov
 import CredentialsProvider from "@/components/integrations/credentials-provider";
 import OnboardingProvider from "@/components/onboarding/onboarding-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { BackendAPIProvider } from "@/lib/autogpt-server-api/context";
 import { getQueryClient } from "@/lib/react-query/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -23,7 +24,9 @@ export function Providers({ children, ...props }: ThemeProviderProps) {
             <CredentialsProvider>
               <LaunchDarklyProvider>
                 <OnboardingProvider>
-                  <TooltipProvider>{children}</TooltipProvider>
+                  <TooltipProvider>
+                    <LanguageProvider>{children}</LanguageProvider>
+                  </TooltipProvider>
                 </OnboardingProvider>
               </LaunchDarklyProvider>
             </CredentialsProvider>
