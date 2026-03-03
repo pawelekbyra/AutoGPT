@@ -2,6 +2,7 @@ import * as React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { StarRatingIcons } from "@/components/ui/icons";
+import { useUIStore } from "@/store/ui";
 
 interface StoreCardProps {
   agentName: string;
@@ -26,6 +27,10 @@ export const StoreCard: React.FC<StoreCardProps> = ({
   hideAvatar = false,
   creatorName,
 }) => {
+  const openAuthorProfileModal = useUIStore(
+    (state) => state.openAuthorProfileModal,
+  );
+
   const handleClick = () => {
     onClick();
   };
@@ -56,7 +61,15 @@ export const StoreCard: React.FC<StoreCardProps> = ({
           />
         )}
         {!hideAvatar && (
-          <div className="absolute bottom-4 left-4">
+          <div
+            className="absolute bottom-4 left-4"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (creatorName) {
+                openAuthorProfileModal(creatorName);
+              }
+            }}
+          >
             <Avatar className="h-16 w-16">
               {avatarSrc && (
                 <AvatarImage
